@@ -1,0 +1,86 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.apache.logging.log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>2.15.0</version>
+	</parent>
+	<artifactId>log4j-core-mini</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<!-- recompile everything for target VM except the module-info.java -->
+						<configuration>
+							<source>1.8</source>
+							<target>1.8</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifestFile>${manifestfile}</manifestFile>
+								<manifestEntries>
+									<Specification-Title>${project.name}</Specification-Title>
+									<Specification-Version>${project.version}</Specification-Version>
+									<Specification-Vendor>${project.organization.name}</Specification-Vendor>
+									<Implementation-Title>${project.name}</Implementation-Title>
+									<Implementation-Version>${project.version}</Implementation-Version>
+									<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+									<Implementation-Vendor-Id>org.apache</Implementation-Vendor-Id>
+									<X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+									<X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+									<Multi-Release>true</Multi-Release>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</execution>
+					<!-- <execution> <id>default</id> <goals> <goal>test-jar</goal> </goals> <configuration> <archive> <manifestFile>${manifestfile}</manifestFile> <manifestEntries> 
+						<Specification-Title>${project.name}</Specification-Title> <Specification-Version>${project.version}</Specification-Version> <Specification-Vendor>${project.organization.name}</Specification-Vendor> 
+						<Implementation-Title>${project.name}</Implementation-Title> <Implementation-Version>${project.version}</Implementation-Version> <Implementation-Vendor>${project.organization.name}</Implementation-Vendor> 
+						<Implementation-Vendor-Id>org.apache</Implementation-Vendor-Id> <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK> <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK> 
+						</manifestEntries> </archive> </configuration> </execution> -->
+				</executions>
+			</plugin>
+			<plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>org.apache.logging.log4j.core.mini</Bundle-SymbolicName>
+            <!-- TODO: exclude internal classes from export -->
+            <Export-Package>org.apache.logging.log4j.core.*</Export-Package>
+            <Import-Package>
+              sun.reflect;resolution:=optional,
+              *
+            </Import-Package>
+            <Bundle-Activator>org.apache.logging.log4j.core.osgi.Activator</Bundle-Activator>
+          </instructions>
+        </configuration>
+      </plugin>
+		</plugins>
+	</build>
+</project>

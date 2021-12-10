@@ -34,12 +34,12 @@
     <maven.doap.skip>true</maven.doap.skip>
   </properties>
   <dependencies>
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api-java9</artifactId>
       <scope>provided</scope>
       <type>zip</type>
-    </dependency>
+    </dependency> -->
     <!-- Place Felix before Equinox because Felix is signed. / also place it before org.osgi.core so that its versions of the OSGi classes are used -->
     <dependency>
       <groupId>org.apache.felix</groupId>
@@ -101,7 +101,7 @@
   </dependencies>
   <build>
     <plugins>
-      <plugin>
+      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.0.2</version>
@@ -130,8 +130,8 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
+      </plugin> -->
+      <!-- <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <version>1.7</version>
@@ -149,7 +149,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -164,13 +164,13 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <properties>
             <configurationParameters>
-              <!-- LOG4J2-2921: use parallel test execution by default -->
+              LOG4J2-2921: use parallel test execution by default
               junit.jupiter.execution.parallel.enabled = true
               junit.jupiter.execution.parallel.mode.default = concurrent
             </configurationParameters>
@@ -179,7 +179,7 @@
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
           <excludedGroups>performance,smoke</excludedGroups>
         </configuration>
-      </plugin>
+      </plugin> -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -189,7 +189,7 @@
             <goals>
               <goal>jar</goal>
             </goals>
-            <configuration combine.self="override">
+            <configuration>
               <archive>
                 <manifestFile>${manifestfile}</manifestFile>
                 <manifestEntries>
@@ -207,7 +207,7 @@
               </archive>
             </configuration>
           </execution>
-          <execution>
+          <!-- <execution>
             <id>default</id>
             <goals>
               <goal>test-jar</goal>
@@ -228,11 +228,11 @@
                 </manifestEntries>
               </archive>
             </configuration>
-          </execution>
+          </execution> -->
         </executions>
       </plugin>
       <!-- Include the standard NOTICE and LICENSE -->
-      <plugin>
+      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-remote-resources-plugin</artifactId>
         <executions>
@@ -245,7 +245,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
@@ -268,7 +268,7 @@
       </plugin>
     </plugins>
   </build>
-  <reporting>
+  <!-- <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -291,7 +291,7 @@
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>${checkstyle.plugin.version}</version>
         <configuration>
-          <!--<propertiesLocation>${vfs.parent.dir}/checkstyle.properties</propertiesLocation> -->
+          <propertiesLocation>${vfs.parent.dir}/checkstyle.properties</propertiesLocation>
           <configLocation>${log4jParentDir}/checkstyle.xml</configLocation>
           <suppressionsLocation>${log4jParentDir}/checkstyle-suppressions.xml</suppressionsLocation>
           <enableRulesSummary>false</enableRulesSummary>
@@ -307,8 +307,8 @@
           <bottom><![CDATA[<p align="center">Copyright &#169; {inceptionYear}-{currentYear} {organizationName}. All Rights Reserved.<br />
             Apache Logging, Apache Log4j, Log4j, Apache, the Apache feather logo, the Apache Logging project logo,
             and the Apache Log4j logo are trademarks of The Apache Software Foundation.</p>]]></bottom>
-          <!-- module link generation is completely broken in the javadoc plugin for a multi-module non-aggregating
-               project -->
+          module link generation is completely broken in the javadoc plugin for a multi-module non-aggregating
+               project
           <doclint>none</doclint>
           <detectOfflineLinks>false</detectOfflineLinks>
           <linksource>true</linksource>
@@ -357,6 +357,6 @@
         </configuration>
       </plugin>
     </plugins>
-  </reporting>
+  </reporting> -->
 </project>
 

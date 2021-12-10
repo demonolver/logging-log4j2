@@ -41,12 +41,12 @@
       <artifactId>log4j-api</artifactId>
     </dependency>
     <!-- Classes and resources to be shaded into the core jar -->
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core-java9</artifactId>
       <scope>provided</scope>
       <type>zip</type>
-    </dependency>
+    </dependency> -->
     <!-- Used for OSGi bundle support -->
     <dependency>
       <groupId>org.osgi</groupId>
@@ -155,12 +155,12 @@
     <!-- TEST DEPENDENCIES -->
 
     <!-- Pull in useful test classes from API -->
-    <dependency>
+<!--     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
       <type>test-jar</type>
       <scope>test</scope>
-    </dependency>
+    </dependency> -->
     <!--  Apache Commons Compress -->
     <dependency>
       <groupId>org.tukaani</groupId>
@@ -357,7 +357,7 @@
   </dependencies>
   <build>
     <plugins>
-      <plugin>
+      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>3.0.2</version>
@@ -386,7 +386,7 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -435,7 +435,7 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!-- <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <excludedGroups>
@@ -445,14 +445,14 @@
             <org.apache.activemq.SERIALIZABLE_PACKAGES>*</org.apache.activemq.SERIALIZABLE_PACKAGES>
           </systemPropertyVariables>
         </configuration>
-      </plugin>
-      <plugin>
+      </plugin> -->
+      <!-- <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
         <configuration>
           <skipTests>true</skipTests>
         </configuration>
-      </plugin>
+      </plugin> -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -462,7 +462,7 @@
             <goals>
               <goal>jar</goal>
             </goals>
-            <configuration combine.self="override">
+            <configuration>
               <archive>
                 <manifestFile>${manifestfile}</manifestFile>
                 <manifestEntries>
@@ -481,7 +481,7 @@
               </archive>
             </configuration>
           </execution>
-          <execution>
+          <!-- <execution>
             <id>default</id>
             <goals>
               <goal>test-jar</goal>
@@ -502,7 +502,7 @@
                 </manifestEntries>
               </archive>
             </configuration>
-          </execution>
+          </execution> -->
         </executions>
       </plugin>
       <plugin>
